@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:16.04
 
 ARG TEST_USER
 ENV TEST_USER ${TEST_USER:-ubuntu}
