@@ -3,9 +3,9 @@ FROM ubuntu:latest
 ARG TEST_USER
 ENV TEST_USER ${TEST_USER:-ubuntu}
 
-# Configure SSH and sudo
+# Configure Ansible requirements
 RUN apt-get update && \
-    apt-get install -y ssh sudo && \
+    apt-get install -y python ssh sudo && \
     mkdir /var/run/sshd
 
 # Configure the test user
@@ -24,7 +24,7 @@ RUN cat /home/$TEST_USER/.ssh/id_rsa.pub >> /home/$TEST_USER/.ssh/authorized_key
     chmod 600 /home/$TEST_USER/.ssh/id_rsa && \
     chmod 644 /home/$TEST_USER/.ssh/id_rsa.pub && \
     chmod 600 /home/$TEST_USER/.ssh/authorized_keys && \
-    chown -R $TEST_USER:$TEST_USER /home/$TEST_USER/.ssh
+    chown -R $TEST_USER:$TEST_USER /home/$TEST_USER/
 
 EXPOSE 22
 
